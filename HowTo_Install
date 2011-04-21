@@ -1,0 +1,49 @@
+HowTo install Android SDK on Ubuntu64 bit:
+[1]
+
+1. Install Sun Java (not OpenJDK) [2]
+	better deinstall openjdk
+	add Canonical Partner to the Paket Sources
+	install:
+	- sun-java-6-jre
+	- (sun-java6-plugin)
+	- sun-java6-jdk sun-java6-jdk
+	(it exists also a 64-bit Version)
+	(install at frist the 32 Bit Version, if you need also the 64 one)[3]
+2. Install 
+	ia32-libs [4]
+2. Eclipse
+	take the normal one
+	eclipse IDE (V3.5 or greater)
+3. Android Development Tools (ADT)
+	install in eclipse
+	Help->Install New Software->Andorid-Plugin
+	Add: Location = https://dl-ssl.google.com/android/eclipse/
+4a).Andorid SDK:
+	- unpack to /opt/android-sdk-linux_x86
+	- 
+4b)Eclipse Config:
+	->Windows->Preferences->Android
+	SDK Location = /opt/android-sdk_linux_x86
+
+5)Install rest of Android SDK
+	sudo /opt/android-sdk-linux_x86/tools/android
+6) Start doing Hello World example
+	http://developer.android.com/resources/tutorials/hello-world.html
+
+
+
+
+
+
+
+
+Source: (partly only in German)
+[1]	http://wiki.ubuntuusers.de/Android_SDK	
+[2]	http://wiki.ubuntuusers.de/Java/Installation
+[3]	http://wiki.ubuntuusers.de/Java/Tipps#32bit-Java-Programme
+[4]	http://developer.android.com/sdk/installing.html#troubleshooting
+[5]	http://developer.android.com/resources/tutorials/hello-world.html
+
+
+

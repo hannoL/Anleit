@@ -1,0 +1,25 @@
+log_working_with_git_first_time
+______________________________________
+logged by Hanno Lemoine
+Begin: 2011-04-21
+
+######################################
+Git Cheat Sheat: ->[1]
+
+Install:
+	git-core
+Config:
+	git config --global user.name "Hanno Lemoine"
+	git config --global user.email hanno.lemoine@ruhr-uni-bochum.de
+	git config --global color.ui true
+
+
+Idee: folgende Verzeichnise mit git Sichern
+- /home/hanno/Uni/Master-Arbeit/Anleit_work - zum Testen
+- /home/hanno/Uni/Master-Arbeit/workspace/ex_staumelder	- zum Testen mit eclipse
+
+
+
+
+Quelle:
+[1]	https://github.com/AlexZeitler/gitcheatsheet/blob/master/gitcheatsheet.pdf

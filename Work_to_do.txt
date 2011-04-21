@@ -1,0 +1,17 @@
+
+
+###########
+Probleme
+# install VirtualBox PURE
+############
+W:Failed to fetch http://download.virtualbox.org/virtualbox/debian/dists/maverick/Release  Unable to find expected entry  contrib/source/Sources in Meta-index file (malformed Release file?)
+, E:Some index files failed to download, they have been ignored, or old ones used instead.
+
+#Lösung:
+- Quelltext nicht runterladen wollen
+- mehrfach versucht
+
+###############
+ 
+
+Failed to fetch http://download.virtualbox.org/virtualbox/debian/pool/contrib/v/virtualbox-4.0/virtualbox-4.0_4.0.4-70112~Ubuntu~maverick_amd64.deb Could not connect to download.virtualbox.org:80 (137.254.16.69). - connect (113: No route to host)

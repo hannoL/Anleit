@@ -1,0 +1,28 @@
+Idee für Freizeit:
+
+Entwickle eine Android App: "DSA Index"
+Beschreibung:
+ Die App soll zu Suchbegriffen Seitenzahlen aus DSA-Regelbüchern liefern.
+
+z.B. 
+"Krieger"
+DSA4.1
+ WdH 120-130
+ WdS 75f
+DSA3
+ MSZ 34
+
+Funktion:
+ Funktionieren soll dies ganz einfach. Jeder Nutzer soll sowohl abfragen als auch eintragen können.
+ - Quelle eintragen (sollte moderiert funktionieren)
+ - Begriff neu eintragen
+ - zu Begriff Quellen ergänzen
+
+ Optional soll jeder Nutzer angeben können, ob er identifiziert werden möchte. Das heißt, dass gespeichert wird, welcher Nutzer den Begriff eingetragen hat. Diese Option muss aber wissendlich vom Nutzer aktiviert werden, damit der Datenschutz nicht gefärdet ist.
+
+Features:
+- Umschalten zwischen DSA 3, 4.0, 4.1, oder alle Quellen
+- Klassifizierung der Quellen nach Regeln und Beschreibung
+- Wenn Leute Suchbegriffe falsch geschrieben haben, soll es Verbesserungen Vorschlagen.
+- Erklärung was MSZ, WdH, ... ist
+- Überprüfen beim neueintragen, ob es ähnlichen Begriff im Index schon gibt. ("Meinen sie, ...?")

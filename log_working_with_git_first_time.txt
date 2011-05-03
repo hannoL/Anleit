@@ -13,13 +13,19 @@ Config:
 	git config --global user.email hanno.lemoine@ruhr-uni-bochum.de
 	git config --global color.ui true
 
-
 Idee: folgende Verzeichnise mit git Sichern
 - /home/hanno/Uni/Master-Arbeit/Anleit_work - zum Testen
 - /home/hanno/Uni/Master-Arbeit/workspace/ex_staumelder	- zum Testen mit eclipse
 
 
+###
+# Git mit Eclipse
+Tutorial: [2]
+OK	2. EGit Installation
 
 
 Quelle:
 [1]	https://github.com/AlexZeitler/gitcheatsheet/blob/master/gitcheatsheet.pdf
+[2]	http://www.vogella.de/articles/EGit/article.html
+[3]	http://wiki.eclipse.org/EGit/Git_For_Eclipse_Users (good Backround Information)
+[4]	http://wiki.eclipse.org/EGit/User_Guide#Getting_Started

@@ -6,3 +6,65 @@ Begin: 2011-04-20
 ######################################
 2011-04-11
 
+2011-04-26
+Eclipse kann mit Strg-shift-D die import statments ergänzen
+
+#######
+2011-05-04 
+adb 
+(Ziel: starte mit adb eine Konsole auf dem Android gerät)
+
+AVD Manager: -> 
+cd /opt/android-sdk_linux_x86/tools 
+./android
+Anleitung um AVD Manager nur über Console zu steuern.[1] 
+
+#Start eines Android-Phones
+$ emulator -avd my_Android
+(Es gibt auch Tatatur belegungen: z.B. Pos1 = Home [2])
+
+#öffnet Shell
+$emulator -avd my_Android -shell
+
+#Zeigt Kernel-messages
+$emulator -avd my_Android -show-kernel
+
+##
+adb Android Debug Bridge
+Dalvik Debug Monitor Server (DDMS) (konsole oder Eclipse)
+
+$adb devices
+$adb install ...
+$adb push foo.txt /sdcard/foo.txt
+
+**
+hanno@THOR:~$ adb push Uni/Master-Arbeit/foo.txt /sdcard/foo.txt
+0 KB/s (14 bytes in 0.082s)
+**
+
+**# Konsole auf Android
+hanno@THOR:~$ adb shell
+# pwd
+/
+# cat /sdcard/foo.txt
+Hello Android
+# exit
+hanno@THOR:~$ 
+**
+
+#(WICHTIG)#
+jdwp 	Prints a list of available JDWP processes on a given device. 	You can use the forward jdwp:<pid> port-forwarding specification to connect to a specific JDWP process. For example:
+adb forward tcp:8000 jdwp:472
+jdb -attach localhost:8000
+
+
+#########
+Next to do:
+- Read [3]
+
+
+Quelle:
+[1]	http://developer.android.com/guide/developing/devices/managing-avds-cmdline.html
+[2]	http://developer.android.com/guide/developing/devices/emulator.html#controlling
+[3]	http://developer.android.com/guide/developing/tools/adb.html
+

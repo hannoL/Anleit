@@ -31,6 +31,17 @@ HowTo install Android SDK on Ubuntu64 bit:
 6) Start doing Hello World example
 	http://developer.android.com/resources/tutorials/hello-world.html
 
+#########################
+Konfigurationen: 2011-05-03
+
+PATH -Konfig:
+ - [6]
+ PATH=$PATH:/opt/android-sdk_linux_x86/tools/:/opt/android-sdk_linux_x86/platform-tools/
+ export PATH
+ ACHTUNG: Funktioniert nicht!!!
+ -> in ~/.profile eintragen!!!
+
+
 
 
 
@@ -44,6 +55,6 @@ Source: (partly only in German)
 [3]	http://wiki.ubuntuusers.de/Java/Tipps#32bit-Java-Programme
 [4]	http://developer.android.com/sdk/installing.html#troubleshooting
 [5]	http://developer.android.com/resources/tutorials/hello-world.html
-
+[6]	http://developer.android.com/sdk/installing.html -> "How to update your PATH" 
 
 

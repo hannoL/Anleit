@@ -1,0 +1,37 @@
+log what is changed in Ubuntu
+###############################
+
+##
+#get green color for the hanno@thor in console
+-> unkomment: force_color_prompt=yes 
+-> [1]
+
+##
+#set shortcut for home Directory
+-> [2],[3]
+-> System->Einstellungen->Tastenkombinationen 
+"Persönlicher Ordner" = Strg-Alt-E
+XXX ERROR -> don't work
+
+##
+#Install Dropbox
+
+##
+#gedit [2]
+ Config:
+ - Line Numbers
+ - 
+ apt-get:
+ -gedit-plugins
+ -gedit-latex-plugin
+ Plugin- aktivated
+ - Python Shell -> Strg-F9 gibt es nun ne Python-Konsole
+
+ more "last File" 
+  Alt-F2: gconf-editor -> /apps/gedit-2/preferences/ui/recents max_recents=15
+
+
+
+Quelle:
+[1]	https://wiki.archlinux.org/index.php/Color_Bash_Prompt
+[2]	http://wiki.ubuntuusers.de/gedit

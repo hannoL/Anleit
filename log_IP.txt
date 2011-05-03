@@ -1,0 +1,7 @@
+Überprüfen, ob man am Hirnport immer selbe IP bekommt:
+
+134.147.162.61 		2011-04-21&26	//THOR
+134.147.162.177		2011-04-21&20&26	//latit
+
+im Hirn Port kann man ohne ANmeldung sich im
+134.147.162.* Netzwerk bewegen. Aber nicht darüber hinaus.

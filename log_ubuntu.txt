@@ -31,7 +31,32 @@ XXX ERROR -> don't work
   Alt-F2: gconf-editor -> /apps/gedit-2/preferences/ui/recents max_recents=15
 
 
+##
+# Install and Config OpenVPN
+## [3]
+sudo cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf.gz /etc/openvpn/
+sudo gunzip /etc/openvpn/server.conf.gz
+sudo cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.0 /etc/openvpn/easy-rsa2 
+
+-> Schlüssel erzeugt nach Anleitung
+für natit, Claas und Server
+
+#Ändere Config
+
+#Erstelle extra User
+udo adduser --system --no-create-home --disabled-login openvpn
+Lege Systembenutzer »openvpn« (UID 115) an ...
+Lege neuen Benutzer »openvpn« (UID 115) mit Gruppe »nogroup« an ...
+Erstelle Home-Verzeichnis »/home/openvpn« nicht.
+sudo addgroup --system --no-create-home --disabled-login openvpn 
+Lege Gruppe »openvpn« (GID 124) an ...
+Fertig.
+
+
+
+
 
 Quelle:
 [1]	https://wiki.archlinux.org/index.php/Color_Bash_Prompt
 [2]	http://wiki.ubuntuusers.de/gedit
+[3]	http://wiki.ubuntuusers.de/OpenVPN

@@ -1,0 +1,16 @@
+noch offen zu klären:
+
+[1]
+$ git tag -v TAG_NAME
+
+
+#########
+# Informationen:
+
+# Android Build geht doch auf Nexus S
+http://forum.androidcentral.com/samsung-nexus-s-rooting-roms-hacks/48675-how-compile-nexus-s-kernel-source-3.html
+http://source.android.com/source/build-numbers.html
+
+
+Quelle: 
+[1]	http://source.android.com/source/downloading.html

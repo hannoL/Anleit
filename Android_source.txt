@@ -1,0 +1,76 @@
+How To Comile Android
+and Comile TaintDroid
+#####################
+
+
+Target:
+1. Build Android 2.1 = "Eclair"
+2. Build TaintDroid with Android 2.1
+
+
+2011-05-09:
+HowTo [1]
+
+Needs:
+- Python 2.6 OK
+- JDK 6 OK
+- JDK 5 -> [3]
+
+downloading from
+-> http://archive.ubuntu.com/ubuntu/pool/multiverse/s/sun-java5/...
+
+hanno@THOR:~/Uni/Master-Arbeit.big/Quellen_Packete$ sudo dpkg -i sun-java5-bin_1.5.0-19-0ubuntu0.9.04_amd64.deb sun-java5-jre_1.5.0-19-0ubuntu0.9.04_all.deb sun-java5-jdk_1.5.0-19-0ubuntu0.9.04_amd64.deb sun-java5-demo_1.5.0-19-0ubuntu0.9.04_amd64.deb 
+
+(Java SDK wechelsn)
+hanno@THOR:~/Uni/Master-Arbeit.big/Quellen_Packete$ update-java-alternatives -l
+java-1.5.0-sun 53 /usr/lib/jvm/java-1.5.0-sun
+java-6-sun 63 /usr/lib/jvm/java-6-sun
+hanno@THOR:~/Uni/Master-Arbeit.big/Quellen_Packete$ sudo update-java-alternatives -s java-1.5.0-sun
+
+- git 1.7.1 OK
+-> (optional) Valgrind (finding Memory Leaks)
+
+################ [1]
+#Installing required packages
+$ sudo apt-get install git-core gnupg flex bison gperf build-essential zip curl zlib1g-dev libc6-dev 
+  lib32ncurses5-dev ia32-libs x11proto-core-dev libx11-dev lib32readline5-dev lib32z-dev
+
+#Pachages for Froyo and older
+$ sudo apt-get install gcc-multilib g++-multilib libc6-i386 libc6-dev-i386
+
+###
+#Configuring USB Access
+-> not nessesarry
+
+############### [5]
+#Installing Repo
+$ mkdir ~/bin
+$ PATH=~/bin:$PATH
+$ curl http://android.git.kernel.org/repo > ~/bin/repo
+$ chmod a+x ~/bin/repo
+
+##
+# Initialzing a Repo client (mit 2.1)
+$ cd Uni/Master-Arbeit.big/workspace_Android.source/
+$ repo init -u git://android.git.kernel.org/platform/manifest.git -b eclair
+
+$ gpg --import ...
+
+
+############### [6]
+# Building the System
+
+$ source build/envsetup.sh
+$ lunch generic-eng
+# Make mit 4 Threads
+$ make -j4
+
+
+
+Source:
+[1] http://source.android.com/source/initializing.html
+[2] http://sites.google.com/site/easylinuxtipsproject/java
+[3] http://blog.codepainters.com/2010/10/27/compiling-android-sdk-on-ubuntu-10-10-maverick-meerkat/
+[4] http://blog.codepainters.com/2009/12/18/first-android-platform-build/
+[5] http://source.android.com/source/downloading.html
+[6] http://source.android.com/source/building.html

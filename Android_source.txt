@@ -66,6 +66,23 @@ $ lunch generic-eng
 $ make -j4
 
 
+###############
+# Probleme beim Build:
+
+Es fehlen Packete:
+libx11-dev
+libncurses5-dev
+
+-> Lösung des Problems:
+lib32ncurses5-dev nach Anleitung [7]
+-> Lösung nächstes Problem: 
+lib32z1-dev [7]	
+
+#Emultor startet nicht:
+hanno@THOR:~/Uni/Master-Arbeit.big/workspace_Android.source2.1$ emulator 
+SDL init failure, reason is: No available video device
+-> Lösung [8]
+
 
 Source:
 [1] http://source.android.com/source/initializing.html
@@ -74,3 +91,5 @@ Source:
 [4] http://blog.codepainters.com/2009/12/18/first-android-platform-build/
 [5] http://source.android.com/source/downloading.html
 [6] http://source.android.com/source/building.html
+[7] http://translate.google.de/translate?hl=de&sl=auto&tl=de&u=http%3A%2F%2Fbreakice1016.blogspot.com%2F2011%2F03%2Fubuntu-1010-64bit-jdk15.html (Ubuntu 10.10 auf 64-Bit)
+[8] http://stackoverflow.com/questions/4841908/sdl-init-failure-reason-is-no-available-video-device

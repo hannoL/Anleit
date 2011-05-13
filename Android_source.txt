@@ -7,6 +7,23 @@ Target:
 1. Build Android 2.1 = "Eclair"
 2. Build TaintDroid with Android 2.1
 
+####################
+Kurz Anleit, wenn alles schon instaliert:
+
+$ mkdir WORKING_DIRECTORY
+$ cd WORKING_DIRECTORY
+$ repo init -u git://android.git.kernel.org/platform/manifest.git -b eclair
+$ repo sync
+$ source build/envsetup.sh
+$ lunch full-eng
+
+
+
+
+
+
+
+#################
 
 2011-05-09:
 HowTo [1]
@@ -76,12 +93,20 @@ libncurses5-dev
 -> Lösung des Problems:
 lib32ncurses5-dev nach Anleitung [7]
 -> Lösung nächstes Problem: 
-lib32z1-dev [7]	
+lib32z1-dev [7]	$ mkdir WORKING_DIRECTORY
+$ cd WORKING_DIRECTORY
+
 
 #Emultor startet nicht:
 hanno@THOR:~/Uni/Master-Arbeit.big/workspace_Android.source2.1$ emulator 
 SDL init failure, reason is: No available video device
--> Lösung [8]
+-> Lösung [8] nicht
+
+-> Lösung einfach: [9]
+$ export DISPLAY=:0
+
+
+
 
 
 Source:
@@ -93,3 +118,4 @@ Source:
 [6] http://source.android.com/source/building.html
 [7] http://translate.google.de/translate?hl=de&sl=auto&tl=de&u=http%3A%2F%2Fbreakice1016.blogspot.com%2F2011%2F03%2Fubuntu-1010-64bit-jdk15.html (Ubuntu 10.10 auf 64-Bit)
 [8] http://stackoverflow.com/questions/4841908/sdl-init-failure-reason-is-no-available-video-device
+[9] http://jovechia.blogspot.com/2009/04/sdl-init-failure.html

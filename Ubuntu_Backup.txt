@@ -1,0 +1,79 @@
+Ubuntu backup und umziehen
+#############################
+
+Hier soll eine Erklärung entstehen, wie man mit einem Ubuntu 10.10 von einem Rechner auf einen anderen Umzieht.
+Dabei soll direkt getestet werden, ob ein (auch zu erklärendes Backup System) funktioniert. Also das System ohne großen Probleme exakt wieder hergestellt werden kann.
+
+######################
+Zu Sichernde Dateien:
+- Paketliste (vgl.[1])
+- /home/hanno (Achtung verschlüsselt)
+- /etc/openvpn
+- /media/daten1/hanno (externe Platte)
+
+- /etc [2] Konfigurationsdateien des Systems 
+- Alle Einstellungen von Programmen und des Desktops 
+- Paketliste zur einfachen Wiederherstellung der genutzten Programme 
+
+Sicherungsart:
+- Inkrementelle Sicherung
+
+Strategie:
+- persönliche Daten täglich
+- System Wöchentlich
+- jährlich Backups Über-Prüfen
+
+weitere Tipps:
+Automatische Liste der installierten Programme erstellen, so dass man nach einer Neuinstallation die gewohnten Programme mit einem Klick nachinstallieren kann:
+ Mit Synaptic
+ Mit apt-get
+Vor der Sicherung des kompletten /home-Verzeichnisses:
+ Papierkorb leeren
+ Verzeichnis ~/.thumbnails leeren
+ Email Postfächer komprimieren/aufräumen (Thunderbird, Evolution)
+ Doubletten und mehrfach vorhandenen Dateien löschen (fslint)
+ ggf. Browser cache leeren
+#############
+
+
+1. Packetliste & Quellenliste [1] , [3] (beides exzeugt genau das selbe)
+ dpkg --get-selections | awk '!/deinstall|purge|hold/ {print $1}' > packages.list
+ dpkg --get-selections | grep "\binstall" | awk '{print $1}' > dpkg.log 
+ cp /etc/apt/sources.list . 
+
+Zurückspielen: 
+ cp sources.list /etc/apt/sources.list
+ [Public Keys für dropbox und virtual box herunterladen
+ ->sudo apt-key adv --keyserver pgp.mit.edu --recv-keys 5044912E
+ ->sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 98AB5139 
+ -> mit apt-get update kontrolieren ob weitere fehlen
+ ]
+ sudo apt-get update 
+ xargs -a "packages.list" sudo apt-get install 
+ (Alternativ [3]) sudo xargs -n1 apt-get install -y < /dein_ordner/dpkg.log
+-> Java 5 manuell instalieren
+
+
+2. Probiere Skript von [4]
+->install mailutils
+
+
+
+
+
+
+
+
+
+#########################
+#Interessantes:
+- par2-Datei, erzeugt vorwärts Fehlerkorrektur.
+
+
+#################
+#Quellen:
+[1] http://wiki.ubuntuusers.de/apt-get#Saemtliche-Pakete-neu-installieren
+[2] http://wiki.ubuntuusers.de/Datensicherung
+[3] http://forum.ubuntuusers.de/post/1759955/
+[4] http://wiki.ubuntuusers.de/Skripte/inkrementelles_Backup
+[5] http://wiki.ubuntuusers.de/Skripte/Backup_mit_RSYNC

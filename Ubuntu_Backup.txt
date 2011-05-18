@@ -9,7 +9,8 @@ Zu Sichernde Dateien:
 - Paketliste (vgl.[1])
 - /home/hanno (Achtung verschlüsselt)
 - /etc/openvpn
-- /media/daten1/hanno (externe Platte)
+- /media/daten1/hanno (externe Platte) (16 GB -> tar -> scp)
+- /opt/android-sdk_linux_x86 (ca. 1 GB) (einfach tar-> dann scp)
 
 - /etc [2] Konfigurationsdateien des Systems 
 - Alle Einstellungen von Programmen und des Desktops 
@@ -52,6 +53,12 @@ Zurückspielen:
  xargs -a "packages.list" sudo apt-get install 
  (Alternativ [3]) sudo xargs -n1 apt-get install -y < /dein_ordner/dpkg.log
 -> Java 5 manuell instalieren
+
+
+2. trivialer weg: (mit Verschlüsselter home-Partition) (achtung, selber Username vorher nötig)
+- kein Login über X11 sonder nur über Konsole (z.B. ttp1 oder ssh)
+- rm -r /home/hanno //Lösche alle Dateien und Ortner (auf Zielrechner)
+	// .ecryptfs & .Private die für Verschlüsselung wichtig sind, sind nur links im Dateisystem
 
 
 2. Probiere Skript von [4]

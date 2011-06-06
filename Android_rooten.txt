@@ -1,0 +1,22 @@
+Hilfe Datei zum Flashen von Android geräten
+##################################
+
+
+################
+# Wichtige Sachen
+################
+ - Nand Backup (immer so ein Backup vorher machen) [1]
+
+
+
+
+
+
+################
+# Quellen
+################
+[1] http://www.android-hilfe.de/root-hacking-modding-fuer-nexus-one/49356-taint-droid-installieren.html
+
+################
+#
+################

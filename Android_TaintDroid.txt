@@ -1,0 +1,175 @@
+Android_TaintDroid
+#####################
+
+#########
+Abkürzungen
+AOSP = Android Open Source Project
+
+
+
+
+1. Get Android (android-2.1_r2.1p)
+
+$ mkdir WORKING_DIRECTORY
+$ cd WORKING_DIRECTORY
+$ repo init -u git://android.git.kernel.org/platform/manifest.git -b android-2.1_r2.1p
+$ repo sync
+$ source build/envsetup.sh
+$ lunch full-eng
+
+
+
+######################
+Orginal Kurzanleitung
+######################
+
+##Step1
+########
+% mkdir -p ~/tdroid/tdroid-2.1_r2.1p
+% cd ~/tdroid/tdroid-2.1_r2.1p
+% repo init -u git://android.git.kernel.org/platform/manifest.git -b android-2.1_r2.1p
+% repo sync
+... wait
+#OK
+% . ./build/envsetup.sh
+% lunch 1
+% make -j4
+... wait
+% emulator
+... ensure the build works
+
+##Step2
+get local_manifest.xml and place it in ~/tdroid/tdroid-2.1_r2.1p/.repo
+
+% cd ~/tdroid/tdroid-2.1_r2.1p
+% repo sync
+% cd dalvik
+% git branch --track taintdroid-2.1_r2.1p github/taintdroid-2.1_r2.1p
+% git checkout taintdroid-2.1_r2.1p
+% git pull # (just to be safe)
+% cd ..
+% cd frameworks/base
+% git branch --track taintdroid-2.1_r2.1p github/taintdroid-2.1_r2.1p
+% git checkout taintdroid-2.1_r2.1p
+% git pull # (just to be safe)
+
+##Step 2.1: Enable ext2 SDcard support
+###########
+FUNKTIONIERT NICHT -> Deswegen per Hand
+##% cd system/core
+##% git apply -v #<diff-file>
+##git apply -v ../../../download_TaintDroid/SD_Card.diff
+-> vold/volmgr.c
+-> vold/volmgr_ext3.c
+
+##Step 3: Obtain a kernel with YAFFS2 XATTR support
+###########
+
+##Step 3a (easier option): Get a prebuilt kernel
+###########
+% cd ~
+% wget http://www.appanalysis.org/files/nexusone-xattr-kernel-2.6.29.zip
+
+##Step 3b (harder option): Build a kernel with YAFFS2 XATTR support
+###########
+If you are building a kernel for an emulator, use "kernel/common.git". 
+
+% cd ~
+% wget http://www.appanalysis.org/files/yaffs_xattr.patch
+...
+% cd ~/tdroid/tdroid-2.1_r2.1p
+% git clone git://android.git.kernel.org/kernel/common.git
+% cd common
+% git branch --track android-gldfish-2.6.29 origin/archive/android-gldfish-2.6.29
+% git checkout android-gldfish-2.6.29
+% git pull # (just to be safe)
+% patch -p1 < ../../download_TaintDroid/yaffs_xattr.patch
+...
+% cd ~/tdroid/tdroid-2.1_r2.1p
+% . ./build/envsetup.sh
+% lunch 1 # (lunch 1 is fine for now)
+...
+% cd common
+% export ARCH=arm
+% export SUBARCH=arm
+% export CROSS_COMPILE=arm-eabi-
+
+##Step 3b2 -> get config File von emulator (DOCH NICHT!!)
+
+% make goldfish_defconfig
+% make oldconfig
+% make menuconfig
+# ... verify YAFFS and EXT2 with XATTR and SECURITY support
+(Mit / kann man suchen!!!!)
+EXT2: File systems -> Second extended fs support
+	->Ext2 extended attributes
+	->Ext2 Security Labels
+YAFFS: File systems -> Miscellaneous filesystems
+	->YAFFS extemded attributes
+	->YAFFS Security Lebels
+
+
+% make -j4
+% cp arch/arm/boot/zImage ../../download_TaintDroid/
+
+drivers/net/wireless/bcm4329/bcm4329.ko -> braucht man für Emulator nicht
+
+##Step 4: Setup the vendor build scripts
+###########
+-> Wird übersprungen, weil wir das für den Emulator nicht brauchen
+
+##Step 5: Build TaintDroid
+##########
+
+% cd ~/tdroid/tdroid-2.1_r2.1p
+% edit/create buildspec.mk 
+# Enable core taint tracking logic (always add this)
+WITH_TAINT_TRACKING := true
+
+# Enable taint tracking for ODEX files (always add this)
+WITH_TAINT_ODEX := true
+
+# Enable taint tracking in the "fast" (aka ASM) interpreter (recommended)
+WITH_TAINT_FAST := true
+
+# Enable addition output for tracking JNI usage (not recommended)
+#TAINT_JNI_LOG := true
+
+% . ./build/envsetup.sh
+% lunch 1 # da wir für emulator compilieren
+% make clean
+% make -j4
+
+
+
+##Step 6: Flash the device
+##########
+
+Von Quelle: [2]
+Next step is to start the emulator with the compiled kernel and TaintDroid system image.
+
+% emulator -kernel ../download_TaintDroid/zImage -system out/target/product/generic/system.img &
+
+While booting up, issue:
+
+% adb shell setprop dalvik.vm.execution-mode int:portable
+
+When emulator has booted up:
+
+% wget http://www.appanalysis.org/files/TaintDroidNotify.apk
+% adb install ../download_TaintDroid/TaintDroidNotify.apk
+....
+
+##Step 7-9 
+
+
+##Step 8: Format the SDcoard as ext2
+- SDCard ueber mksdcard erstellen und dann den Emulator mit -sdcard <file> starten
+
+
+
+
+Quellen:
+[1]	http://appanalysis.org/download.html
+[2]	https://gist.github.com/887998 (Anleitung für TaintDroid auf Emulator)
+

@@ -1,0 +1,50 @@
+# HowTo run TaintDroid-Images
+###############################
+
+Author: Hanno Lemoine
+Date: 07.06.2011
+
+This is a test in order to run TaintDroid, out of two images, going over the Mailingliste in google Groups.
+
+This are the files:
+system.img (52.89MB) : http://www.mediafire.com/?r9om6chpot76jb9
+zImage (1.4MB) : http://www.mediafire.com/?17opsw946nwsai0
+
+HowTo: /Uni/Master-Arbeit/Anleit_work/Android_TaintDroid_img.txt
+working-directory: /Uni/Master-Arbeit.big/workspace_taintDroid_img
+
+###############################
+
+#1: Requirements:
+- you have a sdk installed
+- PATH to emulator in sdk
+- /opt/android-sdk_linux_x86/tools/emulator
+- Build-Output-Directory bye a Android 2.1 wiht TaintDroid (hope, that a normal Android 2.1 build is necessary! NOT TESTED!)
+- /Uni/Master-Arbeit.big/Archiv_taintDroid/tD_2.1_out_target_product_2011-06-07/
+
+#2: Setzte Umgebungsvariable ANDROID_PRODUCT_OUT [6]
+Laut [6] ist es notwenig, dass man diese Umgeubungsvariable setzt, diese Zeit auf ein Verzeichnis mit:system.img, ramdisk.img, userdata.img und kernel-qemu angeben. Ein Test mit einem TD-Android-Buil zeigt:
+
+$ echo $ANDROID_PRODUCT_OUT 
+/home/hanno/Uni/Master-Arbeit.big/workspace_taintDroid.source2.1_r2.1p/out/target/product/generic
+Dieses Verzeichnis enthält 2.6 GB
+
+$ echo $PATH
+/home/hanno/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/android-sdk_linux_x86/tools/:/opt/android-sdk_linux_x86/platform-tools/:
+/home/hanno/Uni/Master-Arbeit.big/workspace_taintDroid.source2.1_r2.1p/out/host/linux-x86/bin:
+/home/hanno/Uni/Master-Arbeit.big/workspace_taintDroid.source2.1_r2.1p/prebuilt/linux-x86/toolchain/arm-eabi-4.4.0/bin:
+/home/hanno/Uni/Master-Arbeit.big/workspace_taintDroid.source2.1_r2.1p/development/emulator/qtools:
+/home/hanno/Uni/Master-Arbeit.big/workspace_taintDroid.source2.1_r2.1p/prebuilt/linux-x86/toolchain/arm-eabi-4.4.0/bin:
+/home/hanno/Uni/Master-Arbeit.big/workspace_taintDroid.source2.1_r2.1p/prebuilt/linux-x86/toolchain/arm-eabi-4.4.0/bin
+
+
+
+
+
+###########
+##Quellen:
+
+[5]: 	emulator -help-virtual-device
+[6]:	emulator -help-build-images			//IF you want to run emulator in a android-BUILD-system
+
+

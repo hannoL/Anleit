@@ -148,7 +148,9 @@ WITH_TAINT_FAST := true
 Von Quelle: [2]
 Next step is to start the emulator with the compiled kernel and TaintDroid system image.
 
-% emulator -kernel ../download_TaintDroid/zImage -system out/target/product/generic/system.img &
+% emulator -kernel ../download_TaintDroid/zImage -image out/target/product/generic/system.img &
+
+//HL: Warum habe ich hier -system stehen und nicht -image wie in den Anleitungen (2011-06-07)
 
 While booting up, issue:
 
@@ -164,12 +166,72 @@ When emulator has booted up:
 
 
 ##Step 8: Format the SDcoard as ext2
-- SDCard ueber mksdcard erstellen und dann den Emulator mit -sdcard <file> starten
+- SDCard ueber mksdcard [3] erstellen und dann den Emulator mit -sdcard <file> starten
+- zu finden: 
+	./sdk/emulator/mksdcard
+	./out/host/linux-x86/bin/mksdcard
+	./out/host/linux-x86/obj/EXECUTABLES/mksdcard_intermediates/mksdcard
+- SDCard erzeugen
+hanno@odin:~/Uni/Master-Arbeit.big/workspace_taintDroid.source2.1_r2.1p/out/host/linux-x86/bin$ ./mksdcard -l myTdCardFAT 32M myTdCardFATFile.img
+
+##SD-Card per Hand Mounten:
+sudo mount -o loop ~/loop_image.img /media/loop_mount 
 
 
 
+###########
+# Problems:
+###########
+#P1: wrong "emulator"
+Test with 
+$which emulator
+where the emulator is that you call. It is possible, that you call the emulator from a normal sdk.
+The correct Path should be: 
+/home/hanno/Uni/Master-Arbeit.big/workspace_taintDroid.source2.1_r2.1p/out/host/linux-x86/bin:
+If not, you have to manipulate your PATH-Variable. My Problem is, that the PATH to the sdk-tools is in front of the PATH for the android Building, that is a Problem.
+#S1: local Solution:
+echo PATH="/home/hanno/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/hanno/Uni/Master-Arbeit.big/workspace_taintDroid.source2.1_r2.1p/out/host/linux-x86/bin:/home/hanno/Uni/Master-Arbeit.big/workspace_taintDroid.source2.1_r2.1p/prebuilt/linux-x86/toolchain/arm-eabi-4.4.0/bin:/home/hanno/Uni/Master-Arbeit.big/workspace_taintDroid.source2.1_r2.1p/development/emulator/qtools:/home/hanno/Uni/Master-Arbeit.big/workspace_taintDroid.source2.1_r2.1p/prebuilt/linux-x86/toolchain/arm-eabi-4.4.0/bin:/home/hanno/Uni/Master-Arbeit.big/workspace_taintDroid.source2.1_r2.1p/prebuilt/linux-x86/toolchain/arm-eabi-4.4.0/bin"
+
+
+#############
+#P2: no keys in emulator
+#S2: direkt adress the correct emulator
+./out/host/linux-x86/bin/emulator -kernel ../download_TaintDroid/zImage -image out/target/pruct/generic/system.img -sdcard myTdCardFATFile.img
+
+#############
+#P3: SD-Card Ext2 bzw 3 formatieren
+$ sudo mke2fs myTdCardEXTFile.img 
+mke2fs 1.41.12 (17-May-2010)
+myTdCardEXTFile.img ist kein spezielles Block-Gerät.
+Trotzdem fortsetzen? (j,n) j
+Dateisystem-Label=
+OS-Typ: Linux
+Blockgröße=1024 (log=0)
+Fragmentgröße=1024 (log=0)
+Stride=0 Blöcke, Stripebreite=0 Blöcke
+8192 Inodes, 32768 Blöcke
+1638 Blöcke (5.00%) reserviert für den Superuser
+Erster Datenblock=1
+Maximale Dateisystem-Blöcke=33554432
+4 Blockgruppen
+8192 Blöcke pro Gruppe, 8192 Fragmente pro Gruppe
+2048 Inodes pro Gruppe
+Superblock-Sicherungskopien gespeichert in den Blöcken: 
+	8193, 24577
+
+Schreibe Inode-Tabellen: erledigt                        
+Schreibe Superblöcke und Dateisystem-Accountinginformationen: erledigt
+
+Das Dateisystem wird automatisch nach jeweils 28 Einhäng-Vorgängen bzw.
+alle 180 Tage überprüft, je nachdem, was zuerst eintritt. Dies kann durch
+tune2fs -c oder -i geändert werden.
+
+
+#####################
 
 Quellen:
 [1]	http://appanalysis.org/download.html
 [2]	https://gist.github.com/887998 (Anleitung für TaintDroid auf Emulator)
+
+[3]	http://developer.android.com/guide/developing/tools/mksdcard.html
 

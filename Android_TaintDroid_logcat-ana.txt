@@ -1,0 +1,10 @@
+TaintDroid läuft
+Fehler aus dem logcat:
+
+
+LogError- logcat_2011-06-07_16Uhr_andereDbug.txt
+#################################################
+
+E/TaintDroidNotifyService(  251): Could not read a log entry: null
+# Fehler aufgetreten nachdem mehrfach start/stop bei taintdroid
+

@@ -1,0 +1,27 @@
+Beispiel TaintDroid log:
+
+App: MalewareSimulator von Daniel Bäumers
+Funktion: IMEI wird über http-Get Request an externe Webseite geschickt.
+
+################
+Logcat - Ausgabe:
+
+W/dalvikvm(  258): TaintLog: OSNetworkSystem.sendStream(81.209.145.170) received data with tag 0x400 data=[GET ??tel=000000000000000 HTTP/1.1
+W/dalvikvm(  258): User-Agent: Dalvik/1.1.0 (Linux; U; Android 2.1-update1; generic Build/EPE54B)
+W/dalvikvm(  258): Host: h-lemoine.de
+W/dalvikvm(  258): Accept: *, */*
+W/dalvikvm(  258): Connection: Keep-Alive
+W/dalvikvm(  258): 
+W/dalvikvm(  258): ]
+I/global  (  258): Default buffer size used in BufferedReader constructor. It would be better to be explicit if an 8k-char buffer is required.
+
+################
+Anhang 2 Bilder:
+
+1. TaintDroid_MalewareSimulator_01.png
+zeigt die App "MalewareSimulator"
+2. TaintDroid_MalewareSimulator_02.png
+zweigt Benachrichtung von TaintDroid
+
+Hanno Lemoine - 08.06.2011
+

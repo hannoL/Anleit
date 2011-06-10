@@ -200,6 +200,8 @@ echo PATH="/home/hanno/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sb
 
 #############
 #P3: SD-Card Ext2 bzw 3 formatieren
+$ mksdcard -l mySdCardFAT 32M mySdCardFATFile.img
+$ cp mySdCardFATFile.img myTdCardEXTFile.img
 $ sudo mke2fs myTdCardEXTFile.img 
 mke2fs 1.41.12 (17-May-2010)
 myTdCardEXTFile.img ist kein spezielles Block-Gerät.

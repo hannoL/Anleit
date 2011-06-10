@@ -1,0 +1,23 @@
+Projekt Name: TraceDroid
+in Anlehung an strace [1]
+
+############
+Diese Datei soll Indeen für meine Master Arbeit kurz aufzählen.
+###########
+
+
+- Android 2.3.4 (da 2.1 zu alt ist)
+- anlehnung an das bekannte Tool strace [1]
+	eventuell davon funktionen übernehmen.
+
+
+
+
+
+
+
+
+
+
+Quellen:
+[1]	http://sourceforge.net/projects/strace/

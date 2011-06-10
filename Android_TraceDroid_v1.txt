@@ -1,0 +1,25 @@
+TraceDroid -V1
+workuing Protokoll
+#######################
+
+This File is a Protokoll in working on my new project TraceDroid
+#######################
+
+1. get source Code byte repo sync with tag:  android-2.3.4_r1 [1]
+ 6.2 GB heruntergeladen
+2. Backup (um nachher zu testen ob nach dem make clean alles gleich ist)
+3. test if it runs
+4. make clean
+
+#2 in eclipse [3]
+wo ist eclipse.ini? = /etc/eclipse.ini (Überflüssig, da das schon die default werde waren.)
+
+
+
+
+#################
+Quelle:
+[1]	http://source.android.com/source/downloading.html
+[2]	http://source.android.com/source/building.html
+[3]	http://source.android.com/source/using-eclipse.html
+

@@ -5,14 +5,30 @@ workuing Protokoll
 This File is a Protokoll in working on my new project TraceDroid
 #######################
 
+#1: Code holen und Testen
 1. get source Code byte repo sync with tag:  android-2.3.4_r1 [1]
  6.2 GB heruntergeladen
 2. Backup (um nachher zu testen ob nach dem make clean alles gleich ist)
 3. test if it runs
+
+!!! WICHTIG auf Java6 umstellen:
+	$ update-java-alternatives -l
+	$ sudo update-java-alternatives -s java-6-sun
+
+	$ . build/envsetup.sh
+	$ lunch 1
+	$ make -j4
+	$./out/host/linux-x86/bin/emulator
+
 4. make clean
 
 #2 in eclipse [3]
 wo ist eclipse.ini? = /etc/eclipse.ini (Überflüssig, da das schon die default werde waren.)
+Nach Anleitung [3] eingerichtet.
+
+$repo start TraceDroid_V1 --all
+$repo branches #Kontrolle
+
 
 
 
@@ -22,4 +38,5 @@ Quelle:
 [1]	http://source.android.com/source/downloading.html
 [2]	http://source.android.com/source/building.html
 [3]	http://source.android.com/source/using-eclipse.html
+[4]	http://source.android.com/source/using-repo.html
 

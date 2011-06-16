@@ -1,0 +1,60 @@
+Android ATrace
+###################
+A syscall tracer for Android Emulator
+###################
+https://github.com/ChengyuSong/ATrace
+
+
+Vermutlich das unterproject external_qemu
+
+http://android.git.kernel.org/
+
+
+$diff -r ../../workspace_ATrace_test/ATrace/ qemu/ | grep "diff -r"
+Vergliech mit Android 2.3.4 liefert einige Änderungen, aber etliches ist gleich.
+
+aber laut Datei "Changelog" beides auf Version 0.12.0
+$ diff Changelog ../../workspace_traceDroid_v1/external/qemu/Changelog
+gibt keine Ausgabe
+
+
+#############
+Instalation: Versuch 1
+#############
+$ cd ~/Uni/Master-Arbeit.big/workspace_ATrace_test
+$ mkdir SDK_with_ATrace
+$ wget http://dl.google.com/android/android-sdk_r11-linux_x86.tgz
+$ tar xvfz android-sdk_r11-linux_x86.tgz
+	# SDK komplett instalieren
+$ cd android-sdk-linux_x86/
+$ sudo tools/android
+	# wähle SDK Platform 2.3.3 API10 -> instaliere
+
+
+##########
+in INSTALL steht drin:
+##
+Building the emulator with the Android build system:
+----------------------------------------------------
+
+Ensure that you have properly configured your build by running the
+envsetup.sh script and using the appropriate 'lunch' command.
+
+Then type: 
+
+     m emulator
+
+This will rebuild the emulator and place it in an adequate location.
+Simply type 'emulator' to start it with the currently built system
+image.
+##
+
+
+-> Als nächstes hoffen, dass Chengu mir antwortet.
+
+
+#########
+#Quellen:
+[1]
+[2]
+[3]	Mail von csong84@gatech.edu

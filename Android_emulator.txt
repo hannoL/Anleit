@@ -1,0 +1,90 @@
+Android emulator
+#####################
+Information and Tutorials about the android emulator
+#####################
+
+
+###########################
+#1 How to run?
+#2 Where to find the *.img
+#
+#
+#
+#10 How to compile a custom emulator
+# list of references
+###########################
+
+
+####################
+#1 How to run?
+####################
+Beispiel von Patrik.Latz [7]
+emulator -avd name -kernel ~/zImage -ramdisk ~/tdroid/tdroid-2.1_r2.1p/out/target/product/generic/ramdisk.img -image ~/tdroid/tdroid-2.1_r2.1p/out/target/product/generic/system.img &
+
+emulator -avd my_Android -kernel /opt/android-sdk_linux_x86/platforms/android-10/images/kernel-qemu -ramdisk /opt/android-sdk_linux_x86/platforms/android-10/images/ramdisk.img -image /opt/android-sdk_linux_x86/platforms/android-10/images/system.img &
+
+we need following [1]
+-sysdir
+-datadir
+-kernel /opt/android-sdk_linux_x86/platforms/android-10/images/kernel-qemu
+-ramdisk /opt/android-sdk_linux_x86/platforms/android-10/images/ramdisk.img
+-system /opt/android-sdk_linux_x86/platforms/android-10/images/system.img
+-data ~/.android/avd/my_Android.avd/userdata.img
+-cache ~/.android/avd/my_Android.avd/cache.img
+-sdcard ~/.android/avd/my_Android.avd/sdcard.img
+-snapstorage /opt/android-sdk_linux_x86/tools/lib/emulator/snapshots.img
+
+
+# important!!!
+###############
+./emulator \
+-sysdir /opt/android-sdk_linux_x86/platforms/android-10/images \
+-kernel /opt/android-sdk_linux_x86/platforms/android-10/images/kernel-qemu \
+-ramdisk /opt/android-sdk_linux_x86/platforms/android-10/images/ramdisk.img \
+-system /opt/android-sdk_linux_x86/platforms/android-10/images/system.img \
+-data ~/.android/avd/my_Android.avd/userdata.img \
+-cache ~/.android/avd/my_Android.avd/cache.img \
+-sdcard ~/.android/avd/my_Android.avd/sdcard.img \
+-snapstorage /opt/android-sdk_linux_x86/tools/lib/emulator/snapshots1.img
+=> wähle anderen snapshot!
+-> läuft!
+###################
+
+
+####################
+#2 Where to find the *.img
+####################
+$ hanno@odin:~/.android$ find . -name '*.img'
+./avd/my_Android.avd/userdata-qemu.img
+./avd/my_Android.avd/sdcard.img
+./avd/my_Android.avd/cache.img
+./avd/my_Android.avd/userdata.img
+$ hanno@odin:/opt/android-sdk_linux_x86$ find . -name '*.img'
+./tools/lib/emulator/snapshots.img
+./platforms/android-10/images/userdata.img
+./platforms/android-10/images/ramdisk.img
+./platforms/android-10/images/system.img
+./platforms/android-8/images/userdata.img
+./platforms/android-8/images/ramdisk.img
+./platforms/android-8/images/system.img
+./platforms/android-7/images/userdata.img
+./platforms/android-7/images/ramdisk.img
+./platforms/android-7/images/system.img
+
+
+
+
+
+
+####################
+#10 How to compile a custom emulator
+####################
+-> look at Android_ATrace.txt -> Instalation: 2nd TRY
+
+
+#########
+#Quellen / list of qreferences
+[1]	emulator -help-disk-images | less
+[2]	
+
+[7]	http://code.google.com/p/droidbox/wiki/Compile

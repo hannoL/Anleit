@@ -1,17 +1,14 @@
 Android ATrace
 ###################
-A syscall tracer for Android Emulator
+A syscall tracer for Android Emulator [1]
 ###################
-https://github.com/ChengyuSong/ATrace
+only the subproject: external\qemu und [2]
+Based probably on Android 2.2
 
-
-Vermutlich das unterproject external_qemu
-
-http://android.git.kernel.org/
 
 
 $diff -r ../../workspace_ATrace_test/ATrace/ qemu/ | grep "diff -r"
-Vergliech mit Android 2.3.4 liefert einige Änderungen, aber etliches ist gleich.
+Vergliech mit Android 2.3.4 liefert einige Änderungen, aber etliche Dateien sind gleich.
 
 aber laut Datei "Changelog" beides auf Version 0.12.0
 $ diff Changelog ../../workspace_traceDroid_v1/external/qemu/Changelog
@@ -29,6 +26,46 @@ $ tar xvfz android-sdk_r11-linux_x86.tgz
 $ cd android-sdk-linux_x86/
 $ sudo tools/android
 	# wähle SDK Platform 2.3.3 API10 -> instaliere
+
+#############
+Instalation: 2nd TRY
+#############
+#Try to get the orginal emulator run
+$ git clone git://android.git.kernel.org/platform/external/qemu.git
+$ make
+	-> run android-configure.sh
+$ ./android-configure.sh
+	-> libesd-dev not installed (bibliotek für Sound)
+$ sudo apt-get install libesd-dev
+$ ./android-configure.sh
+	-> run make
+$ make
+	-> error: X11/extensions/XShm.h: No such file or directory
+$ sudo apt-get install x11proto-xext-dev libxext-dev
+$ make
+	->
+	.../aEmulator/qemu/audio/alsaaudio.c:25: fatal error: alsa/asoundlib.h: Datei oder Verzeichnis nicht gefunden
+	compilation terminated.
+	make: *** [objs/intermediates/emulator-libqemu/audio/alsaaudio.o] Fehler 1
+$ sudo apt-get install lib32asound2-dev
+$ make
+	->
+	.../aEmulator/qemu/audio/paaudio.c:5: fatal error: pulse/simple.h: Datei oder Verzeichnis nicht gefunden
+	compilation terminated.
+	make: *** [objs/intermediates/emulator-libqemu/audio/paaudio.o] Fehler 1
+$ sudo apt-get install libesd-dev
+$ make
+	-> a lot of warnings
+	-> Successful!!!
+
+################
+#Test emulator (Information how to run [6])
+$ cd objs
+$ ./emulator 
+
+
+##############
+
 
 
 ##########
@@ -54,7 +91,38 @@ image.
 
 
 #########
-#Quellen:
-[1]
-[2]
+#Quellen / list of qreferences
+[1]	https://github.com/ChengyuSong/ATrace
+[2]	http://android.git.kernel.org/?p=platform/external/qemu.git;a=summary
 [3]	Mail von csong84@gatech.edu
+[4]	http://wiki.qemu.org/Main_Page
+[5]	$ less /home/hanno/Uni/Master-Arbeit.big/workspace_ATrace_test/aEmulator/qemu/docs/ANDROID-TRACING.TXT //Sehr interessant!!
+[6]	$ emulator -help-disk-images | less
+[7]	
+
+
+##############
+#[3]: Mail von Chengyu
+#BEGIN MAIL
+The instructions is in the README, just
+>./atrace-prepare.sh && make
+
+>> I think my main problem is, that I don't now in which environment I have to compile it. I get, that you have only changed the "external/qemu.git" Part.
+Yes, I only modified the emulator, and ATrace works on the emulator level, outside the box.
+
+>> Some questions:
+>> - Which Version do you take? Android 2.3.4?
+I think it's 2.2 based, 2.3 has not come out at that time.
+
+>> - Should I take the compiled SDK from developers.android.com (like told in README)?
+>> - Or should I take the source Code and compile the hole sdk on my own (from source.android.com) (The same way I have done with TaintDroid.)
+Well, ATrace is an emulator level syscall tracer, so you don't need to compile the whole SDK, you just need to use a pre-built image to boot, or you could simply replace the vanilla emulator.
+
+Good luck,
+Chengyu
+
+#COMMENTS:
+vaniella = unmodified
+
+#END MAIL
+#############

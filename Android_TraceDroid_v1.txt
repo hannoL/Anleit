@@ -1,5 +1,5 @@
 TraceDroid -V1
-workuing Protokoll
+working Protokoll
 #######################
 
 This File is a Protokoll in working on my new project TraceDroid
@@ -29,8 +29,81 @@ Nach Anleitung [3] eingerichtet.
 $repo start TraceDroid_V1 --all
 $repo branches #Kontrolle
 
+####################
+# Build: 2011-06-27
+####################
+$. build/envsetup.sh
+$lunch 1
+$ make -j4
 
 
+####################
+# Erste Veränderung
+####################
+###
+#1. android.utils.Log ist nicht zugreifbar -> Fehler
+###
+#2. new Class, linke TaintDroid
+-add new Class Trace
+-add nativ FUnktion log(String)
+
+##Fehler:
+...
+(unknown): error 3: Added class Trace to package dalvik.system
+
+******************************
+You have tried to change the API from what has been previously approved.
+
+To make these errors go away, you have two choices:
+   1) You can add "@hide" javadoc comments to the methods, etc. listed in the
+      errors above.
+
+   2) You can update current.xml by executing the following command:
+         make update-api
+
+      To submit the revised current.xml to the main Android repository,
+      you will need approval.
+******************************
+
+###
+#Lösungsvorschlag 1)
+
+##Fehler:
+...
+collect2: ld returned 1 exit status
+make: *** [out/target/product/generic/obj/SHARED_LIBRARIES/libm_intermediates/LINKED/libm.so] Fehler 1
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+###
+deprecated = Veraltete Typen/Eigenschatfen/Classen
+-> 426f, 1436 in JavaIstAuchEineInsel 
+Als JavaDoc-Tag -> @deprecated und @Deprecated
+
+
+##Fehler:
+...
+make: *** [out/target/common/obj/PACKAGING/checkapi-current-timestamp] Fehler 38
+make: *** Warte auf noch nicht beendete Prozesse...
+Note: packages/apps/Bluetooth/src/com/android/bluetooth/opp/BluetoothOppPreference.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+DroidDoc took 93 sec. to write docs to out/target/common/docs/doc-comment-check
+
+
+####
+#Idee:
+->[6]
+-./libcore/Android.mk ruf unter *.mk auf z.B. JavaLibary.mk
+
+
+###################
+# Nodes
+###################
+- the directory(2.1) "./dalvik/libcore" moved to "./libcore" in 2.3.4
+- in platform/frameworks/base  /api/current.xml are the new nativ-Function of Taint.java defined.
+- But, wehere is the c-Function log()?
 
 
 #################
@@ -39,4 +112,7 @@ Quelle:
 [2]	http://source.android.com/source/building.html
 [3]	http://source.android.com/source/using-eclipse.html
 [4]	http://source.android.com/source/using-repo.html
+[5]	http://www.kandroid.org/online-pdk/guide/build_system.html (Sehr interessante Hilfe!!! Zu Make)
 
+[6]	Vermutung, Fehler liegt an Make Dateien
+	https://groups.google.com/group/android-porting/browse_thread/thread/ab553116dbc960da?hl=de&pli=1

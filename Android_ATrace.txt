@@ -61,12 +61,23 @@ $ make
 ################
 #Test emulator (Information how to run [6])
 $ cd objs
-$ ./emulator 
+./emulator \
+-sysdir /opt/android-sdk_linux_x86/platforms/android-10/images \
+-kernel /opt/android-sdk_linux_x86/platforms/android-10/images/kernel-qemu \
+-ramdisk /opt/android-sdk_linux_x86/platforms/android-10/images/ramdisk.img \
+-system /opt/android-sdk_linux_x86/platforms/android-10/images/system.img \
+-data ~/.android/avd/my_Android.avd/userdata.img \
+-cache ~/.android/avd/my_Android.avd/cache.img \
+-sdcard ~/.android/avd/my_Android.avd/sdcard.img \
+-snapstorage /opt/android-sdk_linux_x86/tools/lib/emulator/snapshots1.img
 
-
+-läuft, aber nicht ohne Fehlermeldungen
 ##############
 
-
+#############
+Instalation: 3rd TRY
+#############
+get ATrace new, and do it like 2nd TRY
 
 ##########
 in INSTALL steht drin:

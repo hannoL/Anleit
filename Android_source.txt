@@ -3,6 +3,32 @@ and Comile TaintDroid
 #####################
 
 
+
+##########
+Überblick: Android 2.3.4
+hanno@odin:~/Uni/Master-Arbeit.big/workspace_traceDroid_v1$ du -sh *
+34M	bionic
+5,9M	bootable
+7,7M	build
+147M	cts
+61M	dalvik
+93M	development
+17M	device
+1,2G	external
+457M	frameworks
+39M	hardware
+95M	libcore
+12K	Makefile
+21M	ndk
+191M	packages
+1,5G	prebuilt
+25M	sdk
+48M	system
+
+#####################
+
+
+
 Target:
 1. Build Android 2.1 = "Eclair"
 2. Build TaintDroid with Android 2.1

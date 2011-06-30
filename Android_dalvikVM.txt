@@ -1,0 +1,17 @@
+Android Dalvik VM
+###################
+
+
+#1 How to Compile seperate?
+#2 How to run?
+#3
+
+#09 Infos
+#10 Quellen
+
+
+############
+
+#09 Infos:
+- dalvik/docs -> some Infos
+- dalvikdalvikVM/Main.c -> some hints for function hooking

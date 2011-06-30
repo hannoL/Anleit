@@ -14,6 +14,23 @@ HowTo: /Uni/Master-Arbeit/Anleit_work/Android_TaintDroid_img.txt
 working-directory: /Uni/Master-Arbeit.big/workspace_taintDroid_img
 
 ###############################
+Unterschiede:
+- https://github.com/TaintDroid/android_platform_dalvik/commit/c16e2329031e99d58094e2bbd604deed76854ae6
+
+###############
+Wissen:
+###############
+newFile libcore/dalvik/src/main/java/dalvik/system/Taint.java
+-> class Taint -> Z.413 nativ log Funktion !?
+Aufruf nachher mit Taint.log("Sting")
+
+
+TaintTags sind in:  vm/interp/Taint.h 
+
+Reading and Writing Logs [7]
+
+
+###############
 
 #1: Requirements:
 - you have a sdk installed
@@ -46,5 +63,6 @@ $ echo $PATH
 
 [5]: 	emulator -help-virtual-device
 [6]:	emulator -help-build-images			//IF you want to run emulator in a android-BUILD-system
+[7]	http://developer.android.com/guide/developing/debugging/debugging-log.html
 
 

@@ -1,0 +1,15 @@
+Android - Environment-Variable
+#################################
+Analyse of the Environment-Variables set by the Android Build:
+
+$ printenv > work_printenv_0_vorAllem.txt
+$ . build/envsetup.sh 
+$ printenv > work_printenv_1_nach_envsetup.txt
+$ lunch 1
+$ printenv > work_printenv_2_nach_lunch1.txt
+$ make clean
+$ printenv > work_printenv_3_nach_makeClean.txt
+$ make -j4 >make_2011-07-12_1216_stout.txt 2>make_2011-07-12_1216_sterr.txt
+
+
+

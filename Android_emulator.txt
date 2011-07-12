@@ -16,6 +16,20 @@ Information and Tutorials about the android emulator
 
 
 ####################
+# 0 Easy run of own Build
+####################
+1. Install latest SDK (in /opt/android-sdk_linux_x86_r12/)
+2. copy ramdisk.img and system.img out of /out/target/product/generic
+3. run /opt/android-sdk_linux_x86_r12/tools/android
+and create a AVD (android-Virtual-Device) with 2.3.3
+4. call emulator:
+$ /opt/android-sdk_linux_x86_r12/tools/emulator -avd test_2.3.3 -ramdisk ~/Uni/tmp/generic/ramdisk.img -system ~/Uni/tmp/generic/system.img
+
+AVD 2.3.3 works also with a 2.3.4 Build
+
+
+
+####################
 #1 How to run?
 ####################
 Beispiel von Patrik.Latz [7]
@@ -69,7 +83,7 @@ $ hanno@odin:/opt/android-sdk_linux_x86$ find . -name '*.img'
 ./platforms/android-8/images/system.img
 ./platforms/android-7/images/userdata.img
 ./platforms/android-7/images/ramdisk.img
-./platforms/android-7/images/system.img
+./platforms/android-7/images/system.imgls
 
 
 

@@ -44,7 +44,7 @@ für natit, Claas und Server
 #Ändere Config
 
 #Erstelle extra User
-udo adduser --system --no-create-home --disabled-login openvpn
+sudo adduser --system --no-create-home --disabled-login openvpn
 Lege Systembenutzer »openvpn« (UID 115) an ...
 Lege neuen Benutzer »openvpn« (UID 115) mit Gruppe »nogroup« an ...
 Erstelle Home-Verzeichnis »/home/openvpn« nicht.

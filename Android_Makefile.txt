@@ -1,0 +1,23 @@
+Android MakeFile
+
+#####################
+
+There are al lot of obscure Build Errors. For example changing a Java-Claas File and get a Error in libc-Libary. So I have to understand the makefile-System of android.
+
+#####################
+
+system: Android 2.3.4
+
+#####################
+
+./Makefile
+>build/core/main.mk
+>include ./build/core/config.mk
+>include ./build/core/cleanbuild.mk    
+>-include $(OUT_DIR)/versions_checked.mk //Minus bedeutet, dass es nicht abbricht, wenn versions_checked.mk nicht existiert.
+
+####################
+
+
+Es wird auch Python Skripte zum Builden benutzt!
+-> build/tools/findleaves.py

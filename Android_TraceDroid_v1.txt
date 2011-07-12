@@ -97,6 +97,170 @@ DroidDoc took 93 sec. to write docs to out/target/common/docs/doc-comment-check
 ->[6]
 -./libcore/Android.mk ruf unter *.mk auf z.B. JavaLibary.mk
 
+###### 2011-06-30 14:30 Build
+# Alles auskommentiert in TraceHL.java und DexClassLoader.java
+-> dann funktioniert der re-Build in 11 Minuten und emulator startet!
+$make -j4 > make_2011-06-30_1430-re-make_allesAuskommentiert_stout.txt 2> make_2011-06-30_1430-re-make_allesAuskommentiert_sterr.txt
+Logs:
+make_2011-06-30_1430-re-make_allesAuskommentiert_sterr.txt
+make_2011-06-30_1430-re-make_allesAuskommentiert_stout.txt
+logcat_2011-06-30_1452.txt
+
+###### 2011-06-30 15:05 Build
+# Class einkommentiert
+# noch nicht "$make update-api"
+$make -j4 > make_2011-06-30_1505_re_Class_einkommentiert_stout.txt 2> make_2011-06-30_1505_re_Class_einkommentiert_sterr.txt
+
+###### 2011-06-30 15:15 build update-api
+# hat funktioniert, nur viele Warnungen!
+$make update-api > make_update_2011-06-30_1515_stout.txt 2> make_update_2011-06-30_1515_sterr.txt
+
+###### 2011-06-30 15:20 Build
+# re-Build nach ausführen von update-api
+kaum Warnungen, aber selber fehler
+	prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/../lib/gcc/arm-eabi/4.4.3/../../../../arm-eabi/bin/ld: error: out/target/product/generic/obj/lib/liblog.so:1:1: invalid character
+	collect2: ld returned 1 exit status
+liblog.so enthält nicht ELF, wie andere Libarys. Das fürht zum Abbruch.
+
+###### 2011-06-30 15:50 Build mit Johannes
+# mit lehrem Construktor!
+-> Funktioniert auch nicht!
+
+###### Clean-Buil 16:00 bis 16:03
+$ make clean 
+
+###### 2011-06-30 16:04  Clean Build
+$ make -j4 > make_2011-06-30_1604_stout.txt 2> make_2011-06-30_1604_sterr.txt
+#Fehler:
+ (unknown): error 13: Class dalvik.system.TraceHL changed final qualifier
+ make: *** [out/target/common/obj/PACKAGING/checkapi-current-timestamp] Fehler 38
+
+###### 2011-06-30 16:27 API-Update
+$ make update-api
+
+###### 2011-06-30 16:29 r-built
+$ make -j4 > make_2011-06-30_1629_stout.txt 2> make_2011-06-30_1629_sterr.txt
+-> Fehler in lib.c linken /Shared Libarys
+
+###### 2011-06-30 16:50
+# kleines System.out.print("Test") in standart Klasse und TraceHL auskommentiert
+$ make update-api
+$ Make -j4 ...
+
+Fehler:
+...
+build/tools/soslim/main.c(140): Input file out/target/product/generic/symbols/system/bin/fsck_msdos is not in ELF format!
+make: *** [out/target/product/generic/obj/EXECUTABLES/fsck_msdos_intermediates/fsck_msdos] Fehler 1
+
+###### 2011-06-30 17:09 r-buit
+# ohne System.out.print("test");
+->geht auch nicht mehr!!!
+
+###### 2011-06-30 17:14 clean
+$ make clean
+
+###### 2011-06-30 17:17 make ~30min
+$ make -j4 > make_2011-06-30_1717_stout.txt 2> make_2011-06-30_1717_sterr.txt
+läuft!
+
+###### 2011-06-30 17:53 make
+# System.out.print("test"); wieder einkommentiert!
+-> Fehler!!!
+prebuilt/linux-x86/toolchain/arm-eabi-4.4.3/bin/../lib/gcc/arm-eabi/4.4.3/../../../../arm-eabi/bin/ld: error: out/target/product/generic/obj/lib/libvorbisidec.so:1:1: invalid character
+collect2: ld returned 1 exit status
+make: *** [out/target/product/generic/obj/SHARED_LIBRARIES/libstagefright_foundation_intermediates/LINKED/libstagefright_foundation.so] Fehler 1
+
+###### 2011-06-30 18:04 make
+# wieder auskommentiert!
+-> Fehler!
+
+###### 2011-06-30 18:11 make
+$ make clean
+$ make -j4 > make_2011-06-30_1814_stout.txt 2> make_2011-06-30_1814_sterr.txt
+->Funktioniert!
+
+###### 2011-06-30 19:14 make
+# System.out.print einkommentiert!
+$ make clean
+$ make -j4 > make_2011-06-30_1914_stout.txt 2> make_2011-06-30_1914_sterr.txt
+->Läuft!!!!!!!!!!!
+
+###### 2011-07-01 00:11 make
+# Class TraceHT.java ohne methoden einfügen
+$ make clean
+$ make update-api > make_update_2011-07-01_0017_stout.txt 2> make_update_2011-07-01_0017_sterr.txt
+$ make -j4 > make_2011-07-01_0014_stout.txt 2> make_2011-07-01_0014_sterr.txt
+-> Hat funktiert!!!!!!!!!!
+
+###### 2011-07-01 13:50
+# mit nativ log Datei
+$ make clean
+$ make update-api > make_update_2011-07-01_1350_stout.txt 2> make_update_2011-07-01_1350_sterr.txt
+$ make -j4 > make_2011-07-01_1400_stout.txt 2> make_2011-07-01_1400_sterr.txt
+-> Funktioniert! Auch Emulator!
+
+###### 2011-07-01 14:27
+# mit aufruf von log-Funktion
+$ make clean
+$ make -j4 > make_2011-07-01_1427_stout.txt 2> make_2011-07-01_1427_sterr.txt
+-> Funktioniert!
+
+-> sehe leider nichts in logcat! Misst!!
+-> IDEE: Das selbe in Taint-Droid machen! Mit TraintDroid API!! 2011-07-01 15:08
+
+###### 2011-07-01 15:25 -> TaintDroid 2.1 <-> Testen!!!
+# Taint.log("Trace....")
+# 
+$ make clean
+$ make -j4 > make_2011-07-01_1525_stout.txt 2> make_2011-07-01_1525_sterr.txt
+
+###### 2011-07-05 14:18 -> TaintDroid 2.1
+# nochmal
+# vergessen builspec.mk wie in Anleitung zu erstellen.
+$ make clean
+$ make -j4 >make_2011-07-05_1418_stout.txt 2>make_2011-07-05_1418_sterr.txt
+
+
+$ echo $PATH
+/home/hanno/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:
+/home/hanno/Uni/Master-Arbeit.big/workspace_taintDroid.source2.1_r2.1p/out/host/linux-x86/bin:
+/home/hanno/Uni/Master-Arbeit.big/workspace_taintDroid.source2.1_r2.1p/prebuilt/linux-x86/toolchain/arm-eabi-4.4.0/bin:
+/home/hanno/Uni/Master-Arbeit.big/workspace_taintDroid.source2.1_r2.1p/development/emulator/qtools:
+/home/hanno/Uni/Master-Arbeit.big/workspace_taintDroid.source2.1_r2.1p/prebuilt/linux-x86/toolchain/arm-eabi-4.4.0/bin:
+/home/hanno/Uni/Master-Arbeit.big/workspace_taintDroid.source2.1_r2.1p/prebuilt/linux-x86/toolchain/arm-eabi-4.4.0/bin
+
+Start:
+$2 ./out/host/linux-x86/bin/adb logcat >logcat_2011-07-05_1501.txt
+$1 emulator -kernel ../download_TaintDroid/zImage -image out/target/product/generic/system.img -sdcard myTdCardEXTFile.img
+$3 ./out/host/linux-x86/bin/adb shell setprop dalvik.vm.execution-mode int:portable
+$3 ./out/host/linux-x86/bin/adb install ../download_TaintDroid/TaintDroidNotify.apk
+$3 ./out/host/linux-x86/bin/adb install ../Archiv_Maleware_Android/2011-06-07_Test_Ware_von_Daniel/MalwareSimulator.apk
+Android: Sene z.B. an h-lemoine.de
+-> Taint funktioniet, aber meine Ausgabe wird nie aufgerufen!!!
+
+###### 2011-07-05 14:18 -> TaintDroid 2.1
+# in public DexClassLoader() nochmal sachen eingefügt zum Ausprinten!!
+# lege buildspec.mk an
+$ make clean
+$ cp ../download_TaintDroid/buildspec.mk .
+$ . build/envsetup.sh 
+$ lunch 1
+$ make -j4 >make_2011-07-05_1529_stout.txt 2>make_2011-07-05_1529_sterr.txt
+
+-> Läuft, aber in Logcat (logcat_2011-07-05_1741.txt) befindet sich nicht mein Tag.
+
+
+#########
+XXXXXXXXX
+XXXXXXXXX
+XXXXXXXXX
+Als nächstes muss ich endlich hinbekommen, in eine Log Datei zu schreiben.
+
+XXXXXXXXX
+XXXXXXXXX
+XXXXXXXXX
+#########
+
 
 ###################
 # Nodes

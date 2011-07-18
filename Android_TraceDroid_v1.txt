@@ -250,16 +250,36 @@ $ make -j4 >make_2011-07-05_1529_stout.txt 2>make_2011-07-05_1529_sterr.txt
 -> Läuft, aber in Logcat (logcat_2011-07-05_1741.txt) befindet sich nicht mein Tag.
 
 
-#########
-XXXXXXXXX
-XXXXXXXXX
-XXXXXXXXX
-Als nächstes muss ich endlich hinbekommen, in eine Log Datei zu schreiben.
+####### 2011-07-18 15:02 -> TraceDroid 2.3.4
+# LOGW("...") eingefüge in dalvik/libdex/DexFile.c in Funktion dexFileParse() 
+# aufruf mit eigenen Skripten
+$1 . ./build/envsetup.sh
+$1 lunch 1
+$1 make clean
+$1 makeapiA.sh		3 Min
+$1 makeAndroid.sh 	19 Min
+$1 cai_copy_android_image.sh -t TraceDroid -c "Test: LOGW(..) in dalvik/libdex/DexFile.c dexFileParse()"
+$2 myLogcat.sh
+$3 tail -f logcat_2011-07-18_1641.txt
+$1 emulator
 
-XXXXXXXXX
-XXXXXXXXX
-XXXXXXXXX
-#########
+Ausgabe: $3 
+...
+D/installd(   35): DexInv: --- BEGIN '/system/app/SettingsProvider.apk' ---
+W/dalvikvm(  108): #HL: Test: Call decFileParse
+W/dalvikvm(  108): #HL: Test: Call decFileParse
+W/dalvikvm(  108): #HL: Test: Call decFileParse
+W/dalvikvm(  108): #HL: Test: Call decFileParse
+W/dalvikvm(  108): #HL: Test: Call decFileParse
+W/dalvikvm(  108): #HL: Test: Call decFileParse
+W/dalvikvm(  108): #HL: Test: Call decFileParse
+W/dalvikvm(  108): #HL: Test: Call decFileParse
+D/dalvikvm(  108): DexOpt: load 36ms, verify+opt 90ms
+W/dalvikvm(  108): #HL: Test: Call decFileParse
+D/installd(   35): DexInv: --- END '/system/app/SettingsProvider.apk' (success) ---
+...
+
+
 
 
 ###################
